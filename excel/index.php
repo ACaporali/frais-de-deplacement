@@ -3,6 +3,7 @@
   use Src\Controllers\UploadController;
 
   echo "index 2";
+  echo getenv('test');
   echo $_SERVER['PHP_SELF'];
 
   require_once('src/app/controllers/appController.php');
