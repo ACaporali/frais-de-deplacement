@@ -20,10 +20,14 @@ class DistanceController
     //If name empty , show form create else save name in db
     if ($cityStart != null && $cityEnd != null && $km != null) {
       $distanceTable = new DistanceTable;
-      $distanceTable->createDistance($cityStart, $cityEnd, $km);
+      $isSucces = $distanceTable->createDistance($cityStart, $cityEnd, $km);
 
-      // Redirection page accueil (home)
-      header('Location: ./');
+      if (!$isSucces) {
+        throw new \Exception('Une erreur s\'est produite avec la base de données', 1);
+      } else {
+        // Redirection page accueil (home)
+        header('Location: ./');
+      }
     }else {
       $cityController = new CityController;
       $resCities = $cityController->retrieveCities();
@@ -37,27 +41,35 @@ class DistanceController
 
     //If name empty , show form update else save newName in db
     if ($id != null && $cityStart != null && $cityEnd != null && $km != null) {
-      $distanceTable->updateDistance($id, $cityStart, $cityEnd, $km);
+      $isSucces = $distanceTable->updateDistance($id, $cityStart, $cityEnd, $km);
 
-      // Redirection page accueil (home)
-      header('Location: ./');
+      if (!$isSucces) {
+        throw new \Exception('Une erreur s\'est produite avec la base de données', 1);
+      } else {
+        // Redirection page accueil (home)
+        header('Location: ./');
+      }
     }else {
       $res = $distanceTable->getDistance($id);
 
-      while ($data = $res->fetch()){
-        $cityStart = new City();
-        $cityStart->setId($data['idCityStart']);
-        $cityStart->setName($data['nameCityStart']);
+      if ($res) {
+        while ($data = $res->fetch()){
+          $cityStart = new City();
+          $cityStart->setId($data['idCityStart']);
+          $cityStart->setName($data['nameCityStart']);
 
-        $cityEnd = new City();
-        $cityEnd->setId($data['idCityEnd']);
-        $cityEnd->setName($data['nameCityEnd']);
+          $cityEnd = new City();
+          $cityEnd->setId($data['idCityEnd']);
+          $cityEnd->setName($data['nameCityEnd']);
 
-        $distance = new Distance();
-        $distance->setCityStart($cityStart);
-        $distance->setCityEnd($cityEnd);
-        $distance->setKm($data['km']);
-        $distance->setId($data['id']);
+          $distance = new Distance();
+          $distance->setCityStart($cityStart);
+          $distance->setCityEnd($cityEnd);
+          $distance->setKm($data['km']);
+          $distance->setId($data['id']);
+        }
+      } else {
+        throw new \Exception('Une erreur s\'est produite avec la base de données', 1);
       }
 
       $cityController = new CityController;
@@ -70,10 +82,14 @@ class DistanceController
   public function delete($id)
   {
     $distanceTable = new DistanceTable;
-    $distanceTable->deleteDistance($id);
+    $isSucces = $distanceTable->deleteDistance($id);
 
-    // Redirection page accueil (home)
-    header('Location: ./');
+    if (!$isSucces) {
+      throw new \Exception('Une erreur s\'est produite avec la base de données', 1);
+    } else {
+      // Redirection page accueil (home)
+      header('Location: ./');
+    }
   }
 
   public function retrieveDistances()
@@ -82,20 +98,24 @@ class DistanceController
     $resDistances = $distanceTable->getDistances();
     $resultDistances = [];
 
-    while ($data = $resDistances->fetch()){
-      $cityStart = new City();
-      $cityStart->setId($data['idCityStart']);
-      $cityStart->setName($data['nameCityStart']);
+    if ($resDistances) {
+      while ($data = $resDistances->fetch()){
+        $cityStart = new City();
+        $cityStart->setId($data['idCityStart']);
+        $cityStart->setName($data['nameCityStart']);
 
-      $cityEnd = new City();
-      $cityEnd->setId($data['idCityEnd']);
-      $cityEnd->setName($data['nameCityEnd']);
+        $cityEnd = new City();
+        $cityEnd->setId($data['idCityEnd']);
+        $cityEnd->setName($data['nameCityEnd']);
 
-      $distance = new Distance();
-      $distance->setCityStart($cityStart);
-      $distance->setCityEnd($cityEnd);
-      $distance->setKm($data['km']);
-      $resultDistances[$data['id']] = $distance;
+        $distance = new Distance();
+        $distance->setCityStart($cityStart);
+        $distance->setCityEnd($cityEnd);
+        $distance->setKm($data['km']);
+        $resultDistances[$data['id']] = $distance;
+      }
+    } else {
+      throw new \Exception('Une erreur s\'est produite avec la base de données', 1);
     }
 
     return $resultDistances;

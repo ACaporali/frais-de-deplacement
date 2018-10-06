@@ -17,10 +17,14 @@ class CityController
 
     //If name empty , show form create else save name in db
     if ($name != null) {
-      $cityTable->createCity($name);
+      $isSucces = $cityTable->createCity($name);
 
-      // Redirection page accueil (home)
-      header('Location: ./');
+      if (!$isSucces) {
+        throw new \Exception('Une erreur s\'est produite avec la base de données', 1);
+      } else {
+        // Redirection page accueil (home)
+        header('Location: ./');
+      }
     }else {
       require_once('app/Views/city/create.php');
     }
@@ -31,17 +35,24 @@ class CityController
 
     //If name empty , show form update else save newName in db
     if ($name != null) {
-      $cityTable->updateCity($id, $name);
-
-      // Redirection page accueil (home)
-      header('Location: ./');
+      $isSucces = $cityTable->updateCity($id, $name);
+      if (!$isSucces) {
+        throw new \Exception('Une erreur s\'est produite avec la base de données', 1);
+      } else {
+        // Redirection page accueil (home)
+        header('Location: ./');
+      }
     }else {
       $res = $cityTable->getCity($id);
 
-      while ($data = $res->fetch()){
-        $city = new City();
-        $city->setId($data['id']);
-        $city->setName($data['name']);
+      if ($res) {
+        while ($data = $res->fetch()){
+          $city = new City();
+          $city->setId($data['id']);
+          $city->setName($data['name']);
+        }
+      } else {
+        throw new \Exception('Une erreur s\'est produite avec la base de données', 1);
       }
 
       require_once('app/Views/city/update.php');
@@ -51,10 +62,14 @@ class CityController
   public function delete($id)
   {
     $cityTable = new CityTable;
-    $cities = $cityTable->deleteCity($id);
+    $isSucces = $cityTable->deleteCity($id);
 
-    // Redirection page accueil (home)
-    header('Location: ./');
+    if (!$isSucces) {
+      throw new \Exception('Une erreur s\'est produite avec la base de données', 1);
+    } else {
+      // Redirection page accueil (home)
+      header('Location: ./');
+    }
   }
 
   public function retrieveCities()
@@ -63,10 +78,14 @@ class CityController
     $resCities = $cityTable->getCities();
     $resultCities = [];
 
-    while ($data = $resCities->fetch()){
-      $city = new City();
-      $city->setName($data['name']);
-      $resultCities[$data['id']] = $city;
+    if ($resCities) {
+      while ($data = $resCities->fetch()){
+        $city = new City();
+        $city->setName($data['name']);
+        $resultCities[$data['id']] = $city;
+      }
+    } else {
+      throw new \Exception('Une erreur s\'est produite avec la base de données', 1);
     }
 
     return $resultCities;
