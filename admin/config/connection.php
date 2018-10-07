@@ -3,6 +3,6 @@ try {
   $bdd = new PDO('mysql:host='.getenv('db_host').'; dbname='.getenv('db_name').'', getenv('db_user'), getenv('db_pwd'));
 }
 catch(exception $e) {
-  die('Erreur '.$e->getMessage().' | mysql:host='.getenv('db_host').'; dbname='.getenv('db_name').'', getenv('db_user'), getenv('db_pwd'));
+  die('Erreur '.$e->getMessage().' | mysql:host='.getenv('db_host').'; dbname='.getenv('db_name').','. getenv('db_user'). getenv('db_pwd'));
 }
 ?>
