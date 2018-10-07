@@ -53,7 +53,7 @@ class DistanceController
       $res = $distanceTable->getDistance($id);
 
       if ($res) {
-        while ($data = $res->fetch()){
+        while ($data = $res->fetch_assoc()){
           $cityStart = new City();
           $cityStart->setId($data['idCityStart']);
           $cityStart->setName($data['nameCityStart']);
@@ -99,7 +99,7 @@ class DistanceController
     $resultDistances = [];
 
     if ($resDistances) {
-      while ($data = $resDistances->fetch()){
+      while ($data = $resDistances->fetch_assoc()){
         $cityStart = new City();
         $cityStart->setId($data['idCityStart']);
         $cityStart->setName($data['nameCityStart']);

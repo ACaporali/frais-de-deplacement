@@ -46,7 +46,7 @@ class CityController
       $res = $cityTable->getCity($id);
 
       if ($res) {
-        while ($data = $res->fetch()){
+        while ($data = $res->fetch_assoc()){
           $city = new City();
           $city->setId($data['id']);
           $city->setName($data['name']);
@@ -79,7 +79,7 @@ class CityController
     $resultCities = [];
 
     if ($resCities) {
-      while ($data = $resCities->fetch()){
+      while ($data = $resCities->fetch_assoc()){
         $city = new City();
         $city->setName($data['name']);
         $resultCities[$data['id']] = $city;

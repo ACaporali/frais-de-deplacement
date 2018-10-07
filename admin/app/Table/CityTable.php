@@ -12,7 +12,7 @@ class CityTable
   {
     global $bdd;
 
-    $bdd->exec('SET CHARACTER SET utf8');
+    $bdd->query('SET CHARACTER SET utf8');
     $result = $bdd->query('SELECT * FROM api_city ORDER BY api_city.name ASC');
 
     return $result;
@@ -22,7 +22,7 @@ class CityTable
   {
     global $bdd;
 
-    $bdd->exec('SET CHARACTER SET utf8');
+    $bdd->query('SET CHARACTER SET utf8');
     $result = $bdd->query('SELECT * FROM api_city WHERE api_city.id = ' . $id);
 
     return $result;
@@ -32,7 +32,7 @@ class CityTable
   {
     global $bdd;
 
-    $bdd->exec('SET CHARACTER SET utf8');
+    $bdd->query('SET CHARACTER SET utf8');
     $result = $bdd->query('INSERT INTO api_city (name) VALUES ("' . $name . '")');
 
     return $result;
@@ -42,7 +42,7 @@ class CityTable
   {
     global $bdd;
 
-    $bdd->exec('SET CHARACTER SET utf8');
+    $bdd->query('SET CHARACTER SET utf8');
     $result = $bdd->query('UPDATE api_city SET name = "' . $name . '" WHERE api_city.id = ' . $id);
 
     return $result;
@@ -52,7 +52,7 @@ class CityTable
   {
     global $bdd;
 
-    $bdd->exec('SET CHARACTER SET utf8');
+    $bdd->query('SET CHARACTER SET utf8');
     $result = $bdd->query('DELETE FROM api_city WHERE api_city.id = ' . $id);
 
     return $result;
