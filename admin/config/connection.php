@@ -1,8 +1,15 @@
 <?php
 try {
-  $bdd = new PDO('mysql:host='.getenv('db_host').'; dbname='.getenv('db_name').'', getenv('db_user'), getenv('db_pwd'));
+  $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+
+  $server = $url["host"];
+  $username = $url["user"];
+  $password = $url["pass"];
+  $db = substr($url["path"], 1);
+
+  $bdd = new mysqli($server, $username, $password, $db);
 }
 catch(exception $e) {
-  die('Erreur '.$e->getMessage().' | mysql:host='.getenv('db_host').'; dbname='.getenv('db_name').','. getenv('db_user'). getenv('db_pwd'));
+  die('Erreur '.$e->getMessage());
 }
 ?>
