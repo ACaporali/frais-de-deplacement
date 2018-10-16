@@ -6,8 +6,8 @@
   echo getenv('test');
   echo $_SERVER['PHP_SELF'];
 
-  require_once('src/app/controllers/appController.php');
-  require_once('src/app/controllers/uploadController.php');
+  require_once('src/app/Controllers/AppController.php');
+  require_once('src/app/Controllers/UploadController.php');
 
   if (isset($_POST['submit'])) {//src/app/utils/upload.php
     $upload = new UploadController($_FILES["fileToUpload"]);
@@ -18,7 +18,7 @@
       $isEdited = $app->editeExcelFile();
     }
   } else {
-    require_once('src/app/views/form-upload-file.php');
+    require_once('src/app/Views/Form-upload-file.php');
   }
 
 ?>

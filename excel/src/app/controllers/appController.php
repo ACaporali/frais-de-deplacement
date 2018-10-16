@@ -10,7 +10,7 @@ use Src\App\Repository\CitiesRepository;
 
 require 'vendor/autoload.php';
 require_once('src/config/connectionDataBase.php');
-require_once('src/app/repository/citiesRepository.php');
+require_once('src/app/Repository/CitiesRepository.php');
 
 /**
  * Read and write the km in the given excel file
@@ -67,7 +67,7 @@ class AppController
 
     if (!empty($writer)) {
       $writer->save('hello world2.xls');
-      require_once('src/app/views/download-file.php');
+      require_once('src/app/Views/Download-file.php');
       $return = true;
     }
 

@@ -6,7 +6,7 @@ use \Datetime;
 
 /**
  * File
- * Table : FileTable
+ * Table : FileRepository
  */
 class File
 {
