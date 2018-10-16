@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\Controllers;
+namespace Src\App\Controllers;
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xls;

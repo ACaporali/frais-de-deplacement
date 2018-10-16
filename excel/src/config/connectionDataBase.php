@@ -15,7 +15,13 @@ class ConnectionDataBase
   public function getConnection()
   {
     try {
-      return new PDO('mysql:host=localhost; dbname=api', 'root', '');
+      $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+      $server = $url["host"];
+      $username = $url["user"];
+      $password = $url["pass"];
+      $db = substr($url["path"], 1);
+
+      return new mysqli($server, $username, $password, $db);
     } catch (PDOException $e) {
       print "Erreur !: " . $e->getMessage() . "<br/>";
       die();

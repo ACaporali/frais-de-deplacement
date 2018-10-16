@@ -1,6 +1,6 @@
 <?php
-  use Src\Controllers\AppController;
-  use Src\Controllers\UploadController;
+  use Src\App\Controllers\AppController;
+  use Src\App\Controllers\UploadController;
 
   echo "index 2";
   echo getenv('test');

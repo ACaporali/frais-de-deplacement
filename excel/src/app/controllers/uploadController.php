@@ -1,6 +1,10 @@
 <?php
 
-namespace Src\Controllers;
+namespace Src\App\Controllers;
+
+use Src\App\Entity\File;
+
+require_once('src/app/entity/File.php');
 
 /**
  *
@@ -42,7 +46,9 @@ class UploadController
     if ($isSizeFileOk) {
       if (move_uploaded_file($this->file["tmp_name"], $this->targetFile )) {
         echo "The file ". basename($this->file["name"]). " has been uploaded.";
+        $fileEntity = new File($this->file["name"]);
         $return = true;
+        var_dump($fileEntity);
       } else {
           echo "Sorry, there was an error uploading your file.";
       }
