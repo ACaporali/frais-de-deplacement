@@ -10,7 +10,7 @@
   if (isset($_POST['submit'])) {//src/app/utils/upload.php
     $file = new FileController();
     $isUploaded = $file->upload($_FILES["fileToUpload"]);
-var_dump($isUploaded['succes']);
+
     if ($isUploaded['succes']) {
       $isSave = $file->save($isUploaded['file']);
 

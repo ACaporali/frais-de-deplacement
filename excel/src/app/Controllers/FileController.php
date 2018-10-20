@@ -33,7 +33,6 @@ class FileController
   */
   public function upload(array $file)
   {
-    var_dump($file);
     $upload = new UploadExcelFile($file);
     return $upload->uploadFile();
   }

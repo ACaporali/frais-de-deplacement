@@ -52,7 +52,6 @@ class UploadExcelFile
         $fileEntity = new File($newName);
         $return['succes'] = true;
         $return['file'] = $fileEntity;
-        var_dump($fileEntity);
       } else {
           echo "Sorry, there was an error uploading your file.";
       }
