@@ -2,7 +2,7 @@
   use Src\App\Controllers\AppController;
   use Src\App\Controllers\FileController;
 
-  echo "index 2";
+  echo "index 2!";
 
   require_once('src/app/Controllers/AppController.php');
   require_once('src/app/Controllers/FileController.php');
