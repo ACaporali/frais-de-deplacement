@@ -7,6 +7,7 @@
   require_once('src/app/Controllers/AppController.php');
   require_once('src/app/Controllers/FileController.php');
 
+echo "beford if";
   if (isset($_POST['submit'])) {//src/app/utils/upload.php
     echo "POST['submit']";
     $file = new FileController();
@@ -22,5 +23,7 @@
     echo "Form-upload-file.php";
     require_once('src/app/Views/Form-upload-file.php');
   }
+
+  echo "after if";
 
 ?>
