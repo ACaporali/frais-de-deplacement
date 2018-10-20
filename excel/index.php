@@ -8,7 +8,7 @@
   require_once('src/app/Controllers/FileController.php');
 
   if (isset($_POST['submit'])) {//src/app/utils/upload.php
-    echo "isset($_POST['submit']";
+    echo "POST['submit']";
     $file = new FileController();
     $isUploaded = $file->upload($_FILES["fileToUpload"]);
 
