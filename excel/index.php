@@ -1,21 +1,21 @@
 <?php
   use Src\App\Controllers\AppController;
-  use Src\App\Controllers\UploadController;
+  use Src\App\Controllers\FileController;
 
   echo "index 2";
-  echo getenv('test');
-  echo $_SERVER['PHP_SELF'];
 
   require_once('src/app/Controllers/AppController.php');
-  require_once('src/app/Controllers/UploadController.php');
+  require_once('src/app/Controllers/FileController.php');
 
   if (isset($_POST['submit'])) {//src/app/utils/upload.php
-    $upload = new UploadController($_FILES["fileToUpload"]);
-    $isUploaded = $upload->uploadFile();
+    $file = new FileController();
+    $isUploaded = $file->upload($_FILES["fileToUpload"]);
+var_dump($isUploaded['succes']);
+    if ($isUploaded['succes']) {
+      $isSave = $file->save($isUploaded['file']);
 
-    if ($isUploaded) {
       $app = new AppController();
-      $isEdited = $app->editeExcelFile();
+      $isEdited = $app->editeExcelFile($isUploaded['file']->getName());
     }
   } else {
     require_once('src/app/Views/Form-upload-file.php');

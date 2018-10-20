@@ -1,15 +1,15 @@
 <?php
 
-namespace Src\App\Controllers;
+namespace Src\App\Utils;
 
 use Src\App\Entity\File;
 
 require_once('src/app/entity/File.php');
 
 /**
- *
+ * Upload the Excel file in the 'uploads' directory
  */
-class UploadController
+class UploadExcelFile
 {
   private $file;
   private $fileType;
@@ -24,15 +24,16 @@ class UploadController
     $this->fileType = strtolower(pathinfo($this->targetFile,PATHINFO_EXTENSION));
   }
 
-  public function uploadFile($value='')
+  public function uploadFile()
   {
-    $return = false;
+    $timestamp = time();
+    $return['succes'] = false;
     $isExcelType = $this->checkType($this->file["tmp_name"]);
     $isExistFile = false;
     $isSizeFileOk = false;
 
     if ($isExcelType) {
-      $isExistFile = $this->existFile($this->targetFile);
+      $isExistFile = $this->existFile($this->targetDir . basename($timestamp.$this->file["name"]));
     } else {
       echo "File is not an Excel file (xls extention/type).";
     }
@@ -45,9 +46,12 @@ class UploadController
 
     if ($isSizeFileOk) {
       if (move_uploaded_file($this->file["tmp_name"], $this->targetFile )) {
+        $newName = $timestamp.$this->file["name"];
+        rename($this->targetDir.$this->file["name"], $this->targetDir.$timestamp.$this->file["name"]);
         echo "The file ". basename($this->file["name"]). " has been uploaded.";
-        $fileEntity = new File($this->file["name"]);
-        $return = true;
+        $fileEntity = new File($newName);
+        $return['succes'] = true;
+        $return['file'] = $fileEntity;
         var_dump($fileEntity);
       } else {
           echo "Sorry, there was an error uploading your file.";

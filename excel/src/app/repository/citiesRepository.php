@@ -17,7 +17,7 @@ class CitiesRepository
   {
     $return = null;
 
-      $connection->exec('SET CHARACTER SET utf8');
+      $connection->query('SET CHARACTER SET utf8');
 
 
       $result = $connection->query('SELECT *
@@ -27,7 +27,7 @@ class CitiesRepository
         AND c1.name = "' . $cityStart . '"
         AND c2.name = "' . $cityEnd . '" ');
 
-      while ($data = $result->fetch()){
+      while ($data = $result->fetch_assoc()){
         $return = $data;
       }
 

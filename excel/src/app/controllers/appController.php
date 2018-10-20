@@ -20,13 +20,13 @@ class AppController
   /**
   * Read and write the km in the given excel file
   */
-  public function editeExcelFile()
+  public function editeExcelFile(String $file)
   {
     $return = false;
     $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
-    //$reader->setReadDataOnly(false);
+    $targetDir = __DIR__.'../../../../uploads/';
 
-    $spreadsheet = $reader->load("frais deplacement.xls");
+    $spreadsheet = $reader->load($targetDir.$file);
     $worksheet = $spreadsheet->getActiveSheet();
     $highestRow = $worksheet->getHighestRow(); // e.g. 10
     $highestColumn = $worksheet->getHighestColumn(); // e.g 'F'
@@ -66,7 +66,7 @@ class AppController
     $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xls');
 
     if (!empty($writer)) {
-      $writer->save('hello world2.xls');
+      $writer->save($targetDir.'v2'.$file);
       require_once('src/app/Views/Download-file.php');
       $return = true;
     }

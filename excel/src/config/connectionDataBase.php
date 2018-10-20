@@ -2,7 +2,7 @@
 
 namespace Src\Config;
 
-use \PDO;
+use \Mysqli;
 
 /**
  * Manage the connection with the data base
@@ -22,7 +22,7 @@ class ConnectionDataBase
       $db = substr($url["path"], 1);
 
       return new mysqli($server, $username, $password, $db);
-    } catch (PDOException $e) {
+    } catch (exception $e) {
       print "Erreur !: " . $e->getMessage() . "<br/>";
       die();
     }
