@@ -23,6 +23,7 @@ class FileController
   {
     $connectionDataBase = new ConnectionDataBase();
     $connection = $connectionDataBase->getConnection();
+    var_dump($connection);
 
     $fileRepsitory = new FileRepository();
     $isSucces = $fileRepsitory->createFile($connection, $file->getName(), $file->getUploadDate());
