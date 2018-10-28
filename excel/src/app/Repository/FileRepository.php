@@ -10,7 +10,7 @@ class FileRepository
   public function createFile($connection, $name, $date)
   {
     $connection->query('SET CHARACTER SET utf8');
-    $result = $connection->query('INSERT INTO api_file (name, uploadDate) VALUES ("' . $name . ', ' . $date . '")');
+    $result = $connection->query('INSERT INTO api_file (name, uploadDate) VALUES ("' . $name . '", "' . $date . '")');
     echo "repository";
     var_dump($result);
     return $result;
