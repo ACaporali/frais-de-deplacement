@@ -1,2 +1,7 @@
 {
+  "scripts": {
+    "compile": [
+      "chmod -R 777 excel/uploads"
+    ]
+  }
 }
