@@ -26,6 +26,8 @@ class FileController
 
     $fileRepsitory = new FileRepository();
     $isSucces = $fileRepsitory->createFile($connection, $file->getName(), $file->getUploadDate());
+echo "is the file created in bd ?";var_dump($isSucces);
+    return $isSucces;
   }
 
   /**

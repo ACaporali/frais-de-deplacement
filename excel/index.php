@@ -13,9 +13,11 @@
     var_dump($isUploaded);
     if ($isUploaded['succes']) {
       $isSave = $file->save($isUploaded['file']);
+      echo "isSave : ";
       var_dump($isSave);
       $app = new AppController();
       $isEdited = $app->editeExcelFile($isUploaded['file']->getName());
+      echo "isEdited : ";
       var_dump($isEdited);
     }
   } else {
