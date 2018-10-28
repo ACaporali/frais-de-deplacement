@@ -7,16 +7,16 @@
   require_once('src/app/Controllers/AppController.php');
   require_once('src/app/Controllers/FileController.php');
 
-echo "beford if";
   if (isset($_POST['submit'])) {
     $file = new FileController();
     $isUploaded = $file->upload($_FILES["fileToUpload"]);
-
+    var_dump($isUploaded);
     if ($isUploaded['succes']) {
       $isSave = $file->save($isUploaded['file']);
-
+      var_dump($isSave);
       $app = new AppController();
       $isEdited = $app->editeExcelFile($isUploaded['file']->getName());
+      var_dump($isEdited);
     }
   } else {
     require_once('src/app/Views/Form-upload-file.php');
