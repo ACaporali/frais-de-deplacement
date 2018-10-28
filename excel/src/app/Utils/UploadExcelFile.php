@@ -54,6 +54,7 @@ class UploadExcelFile
         $return['file'] = $fileEntity;
       } else {
           echo "Sorry, there was an error uploading your file.";
+          echo $this->targetFile;
       }
     } else {
       echo "Sorry, your file is too large.";
