@@ -19,7 +19,7 @@ class UploadExcelFile
   function __construct(array $file)
   {
     $this->file = $file;
-    $this->targetDir = __DIR__.'../../../../uploads/';//new : ../../../uploads/ avant le dossier controllers : ../../uploads/
+    $this->targetDir = __DIR__.'/';//new : ../../../uploads/ avant le dossier controllers : ../../uploads/
     $this->targetFile = $this->targetDir . basename($this->file["name"]);
     $this->fileType = strtolower(pathinfo($this->targetFile,PATHINFO_EXTENSION));
   }
@@ -46,7 +46,16 @@ class UploadExcelFile
 
     if ($isSizeFileOk) {
       if (move_uploaded_file($this->file["tmp_name"], $this->targetFile )) {
-        echo 'is the file moved ? '.move_uploaded_file($this->file["tmp_name"], $this->targetFile );
+        echo 'is the file moved ? ';
+        $moved = move_uploaded_file($this->file["tmp_name"], $this->targetFile );
+        if($moved)
+        {
+            echo "sucess";
+        }
+        else
+        {
+            echo 'failed';
+        }
         $newName = $timestamp.$this->file["name"];
         rename($this->targetDir.$this->file["name"], $this->targetDir.$timestamp.$this->file["name"]);
         echo "The file ". basename($this->file["name"]). " has been uploaded.";
