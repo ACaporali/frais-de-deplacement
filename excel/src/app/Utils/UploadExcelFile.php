@@ -4,7 +4,7 @@ namespace Src\App\Utils;
 
 use Src\App\Entity\File;
 
-require_once('src/app/entity/File.php');
+require_once('src/app/Entity/File.php');
 
 /**
  * Upload the Excel file in the 'uploads' directory
