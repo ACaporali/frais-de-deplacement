@@ -46,6 +46,7 @@ class UploadExcelFile
 
     if ($isSizeFileOk) {
       if (move_uploaded_file($this->file["tmp_name"], $this->targetFile )) {
+        echo 'is the file moved ? '.move_uploaded_file($this->file["tmp_name"], $this->targetFile );
         $newName = $timestamp.$this->file["name"];
         rename($this->targetDir.$this->file["name"], $this->targetDir.$timestamp.$this->file["name"]);
         echo "The file ". basename($this->file["name"]). " has been uploaded.";
@@ -54,7 +55,6 @@ class UploadExcelFile
         $return['file'] = $fileEntity;
       } else {
           echo "Sorry, there was an error uploading your file.";
-          echo $this->targetFile;
       }
     } else {
       echo "Sorry, your file is too large.";
