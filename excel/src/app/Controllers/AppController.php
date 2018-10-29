@@ -24,7 +24,7 @@ class AppController
   {
     $return = false;
     $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
-    $targetDir = __DIR__.'/';
+    $targetDir = __DIR__.'../../../../uploads/';
 
     $spreadsheet = $reader->load($targetDir.$file);
     $worksheet = $spreadsheet->getActiveSheet();
