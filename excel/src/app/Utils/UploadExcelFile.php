@@ -45,7 +45,7 @@ class UploadExcelFile
     }
 
     if ($isSizeFileOk) {
-      echo 'file name tmp :' .$this->file["tmp_name"];
+      echo 'file name tmp :' .$this->file["tmp_name"]. ' to : '.$this->targetFile;
       if (move_uploaded_file($this->file["tmp_name"], $this->targetFile )) {
         echo 'is the file moved ? ';
         $moved = move_uploaded_file($this->file["tmp_name"], $this->targetFile );
