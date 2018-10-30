@@ -19,7 +19,7 @@ class UploadExcelFile
   function __construct(array $file)
   {
     $this->file = $file;
-    $this->targetDir = __DIR__.'../../../../uploads/';//new : ../../../uploads/ avant le dossier controllers : ../../uploads/
+    $this->targetDir = __DIR__.'/../../../uploads/';//new : ../../../uploads/ avant le dossier controllers : ../../uploads/
     $this->targetFile = $this->targetDir . basename($this->file["name"]);
     $this->fileType = strtolower(pathinfo($this->targetFile,PATHINFO_EXTENSION));
   }
@@ -58,7 +58,7 @@ class UploadExcelFile
             echo 'failed';
         }
         $newName = $timestamp.$this->file["name"];
-        rename($this->targetDir.$this->file["name"], $this->targetDir.$newName.$this->file["name"]);
+        rename($this->targetDir.$this->file["name"], $this->targetDir.$newName);
         echo "The file ". basename($this->file["name"]). " has been uploaded.";
         $fileEntity = new File($newName);
         $return['succes'] = true;
