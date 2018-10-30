@@ -58,7 +58,7 @@ class UploadExcelFile
             echo 'failed';
         }
         $newName = $timestamp.$this->file["name"];
-        rename($this->targetDir.$this->file["name"], $this->targetDir.$timestamp.$this->file["name"]);
+        rename($this->targetDir.$this->file["name"], $this->targetDir.$newName.$this->file["name"]);
         echo "The file ". basename($this->file["name"]). " has been uploaded.";
         $fileEntity = new File($newName);
         $return['succes'] = true;
