@@ -1,5 +1,5 @@
 <h1>Edition de la distance '<?php echo $distance->getCityStart()->getName() . ' - ' . $distance->getCityEnd()->getName()?>' :</h1>
-<a href="./">Retour accueil</a>
+<a href="./">← Retour accueil</a>
 <form method="POST" action="index.php?action=updateDistance&id=<?php echo $distance->getId() ?>">
   <label for="start">Ville de départ : </label>
   <select name="start">

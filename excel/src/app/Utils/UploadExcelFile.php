@@ -67,14 +67,15 @@ class UploadExcelFile
   {
     $return = false;
 
-    if('application/vnd.ms-excel' === mime_content_type($file)) {
-      echo "File is an Excel file - ";
+    if('application/vnd.ms-excel' === mime_content_type($file)
+      || 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' === mime_content_type($file)) {
+      echo "File is an Excel file.";
       $return = true;
     } else {
       echo "File is not an Excel file (xls extention/type).";
     }
 
-    if($this->fileType != "xls" || $this->fileType != "xlsx") {
+    if($this->fileType != "xls" && $this->fileType != "xlsx") {
       echo "Sorry, only xls or xlsx files are allowed.";
       $return = true;
     }

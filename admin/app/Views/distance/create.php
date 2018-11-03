@@ -1,5 +1,5 @@
 <h1>Creation d'une nouvelle distance</h1>
-<a href="./">Retour accueil</a>
+<a href="./">← Retour accueil</a>
 <form method="POST" action="index.php?action=createDistance">
   <label for="start">Ville de départ : </label>
   <select name="start">

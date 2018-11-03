@@ -2,15 +2,13 @@
   use Src\App\Controllers\AppController;
   use Src\App\Controllers\FileController;
 
-  echo "index 2!";
-
   require_once('src/app/Controllers/AppController.php');
   require_once('src/app/Controllers/FileController.php');
 
   if (isset($_POST['submit'])) {
     $file = new FileController();
     $isUploaded = $file->upload($_FILES["fileToUpload"]);
-    
+
     if ($isUploaded['succes']) {
       $isSave = $file->save($isUploaded['file']);
       $app = new AppController();
