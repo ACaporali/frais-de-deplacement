@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <body>
-
+    <p><a href="../">← Retour</a></p>
     <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="post" enctype="multipart/form-data">
       <label for="">Selectionez un ficher Excel à uploder :</label>
       <input type="file" name="fileToUpload" id="fileToUpload">

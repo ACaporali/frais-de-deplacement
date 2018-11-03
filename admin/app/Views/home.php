@@ -1,4 +1,4 @@
-<a href="../">← Retour</a>
+<p><a href="../">← Retour</a></p>
 <h1>Gestionnaire des villes et des distances</h1>
 <h2>Liste des villes :</h2>
 <a href="?action=createCity">Ajouter</a>
