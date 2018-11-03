@@ -1,0 +1,13 @@
+<If "req('Host') = 'localhost'">
+  Authtype Basic
+  AuthName "user and password"
+  AuthUserFile C:\wamp64\www\frais-de-deplacement\admin\.htpasswd
+  Require valid-user
+</If>
+
+<If "req('Host') = 'frais-de-deplacement.herokuapp.com'">
+  Authtype Basic
+  AuthName "user and password"
+  AuthUserFile app/admin/.htpasswd
+  Require valid-user
+</If>
