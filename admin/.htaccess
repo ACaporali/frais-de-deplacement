@@ -8,6 +8,6 @@
 <If "req('Host') = 'frais-de-deplacement.herokuapp.com'">
   Authtype Basic
   AuthName "user and password"
-  AuthUserFile app/admin/.htpasswd
+  AuthUserFile /app/admin/.htpasswd
   Require valid-user
 </If>
