@@ -46,7 +46,7 @@ class UploadExcelFile
 
     if ($isSizeFileOk) {
       if (move_uploaded_file($this->file["tmp_name"], $this->targetFile )) {
-        
+
         $newName = $timestamp.$this->file["name"];
         rename($this->targetDir.$this->file["name"], $this->targetDir.$newName);
         echo "The file ". basename($this->file["name"]). " has been uploaded.";
@@ -74,8 +74,8 @@ class UploadExcelFile
       echo "File is not an Excel file (xls extention/type).";
     }
 
-    if($this->fileType != "xls") {
-      echo "Sorry, only xls files are allowed.";
+    if($this->fileType != "xls" || $this->fileType != "xlsx") {
+      echo "Sorry, only xls or xlsx files are allowed.";
       $return = true;
     }
 

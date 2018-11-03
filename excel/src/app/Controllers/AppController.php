@@ -4,6 +4,7 @@ namespace Src\App\Controllers;
 
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xls;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use \PDO;
 use Src\Config\ConnectionDataBase;
 use Src\App\Repository\CitiesRepository;
@@ -23,8 +24,15 @@ class AppController
   public function editeExcelFile(String $file)
   {
     $return = false;
-    $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+    $fileType = strtolower(pathinfo($file,PATHINFO_EXTENSION));
+    if ($fileType == "xls") {
+      $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xls();
+    } else {
+      $reader = new \PhpOffice\PhpSpreadsheet\Reader\Xlsx();
+    }
+
     $targetDir = __DIR__.'/../../../uploads/';
+
 
     $spreadsheet = $reader->load($targetDir.$file);
     $worksheet = $spreadsheet->getActiveSheet();
@@ -63,7 +71,11 @@ class AppController
       }
     }
 
-    $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xls');
+    if ($fileType == "xls") {
+      $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xls');
+    } else {
+      $writer = \PhpOffice\PhpSpreadsheet\IOFactory::createWriter($spreadsheet, 'Xlsx');
+    }
 
     if (!empty($writer)) {
       $writer->save($targetDir.'v2'.$file);
