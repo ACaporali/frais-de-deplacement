@@ -19,7 +19,7 @@
   </tbody>
 </table>
 <hr>
-<h2>Liste des distences :</h2>
+<h2>Liste des distances :</h2>
 <a href="?action=createDistance">Ajouter</a>
 <table>
   <thead>

@@ -62,7 +62,7 @@ class Distance
     return $this->km;
   }
 
-  public function setKm(int $km)
+  public function setKm(float $km)
   {
     $this->km = $km;
 
